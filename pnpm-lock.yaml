@@ -10,6 +10,7 @@ specifiers:
   eslint: ^8.28.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
+  nbtify: ^1.20.0
   prettier: ^2.8.0
   prettier-plugin-svelte: ^2.8.1
   publint: ^0.1.9
@@ -29,6 +30,7 @@ devDependencies:
   eslint: 8.34.0
   eslint-config-prettier: 8.6.0_eslint@8.34.0
   eslint-plugin-svelte3: 4.0.0_dbthnr4b2bdkhyiebwn7su3hnq
+  nbtify: 1.20.0
   prettier: 2.8.4
   prettier-plugin-svelte: 2.9.0_jrsxveqmsx2uadbqiuq74wlc4u
   publint: 0.1.9
@@ -1328,6 +1330,10 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: true
+
+  /nbtify/1.20.0:
+    resolution: {integrity: sha512-F0ZKdFs8yiVOg71Df7bI5xNaGycVW9mK8FwbzBCxUSk+nD9/ixO1Gk9nGHHZwTf4brKBKPE2jMw7LiaMuxJWVA==}
     dev: true
 
   /no-case/3.0.4:
