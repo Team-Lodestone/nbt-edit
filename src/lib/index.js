@@ -1,1 +1,1 @@
-// Reexport your entry components here
+import * as NBT from "nbtify";
