@@ -15,7 +15,6 @@
     }
 
 	export let value: unknown;
-    $: console.log(value)
 </script>
 
 {#if isNumber(value)}
