@@ -15,7 +15,7 @@
 
     let selectedResource = resourceNames[0][1];
     let data: Promise<Uint8Array>;
-
+    
     const encoder = new TextEncoder();
     $: data = resources[selectedResource]().then((data) => encoder.encode(data));
 </script>
@@ -30,4 +30,6 @@
     <p>Loading...</p>
 {:then data}
     <Viewer {data} />
+{:catch error}
+    <p>{error}</p>
 {/await}
