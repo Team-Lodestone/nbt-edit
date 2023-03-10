@@ -14,6 +14,8 @@
             </li>
         {/each}
     </ul>
+{:else if typeof value === "bigint"}
+    <span>{value}n</span>
 {:else}
     <span>{JSON.stringify(value)}</span>
 {/if}

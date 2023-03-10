@@ -1,7 +1,9 @@
 <script lang="ts">
     import { Viewer } from "$lib";
+    import "./polyfill.ts"
+    import { fromHex } from "./hex";
 
-    const resources = import.meta.glob("../resources/*.nbt", { as: "raw" })
+    const resources = import.meta.glob("../resources/*.nbt", { as: "raw-hex" })
 
     const resourceNames = Object.entries(resources).map(([path, _]) => {
         const name = path.match(/\/([^/]+)\.nbt$/);
@@ -17,7 +19,8 @@
     let data: Promise<Uint8Array>;
     
     const encoder = new TextEncoder();
-    $: data = resources[selectedResource]().then((data) => encoder.encode(data));
+    $: resources[selectedResource]().then((data) => console.log(fromHex(data.default)));
+    $: data = resources[selectedResource]().then((data) => fromHex(data.default));
 </script>
 
 <select bind:value={selectedResource}>
