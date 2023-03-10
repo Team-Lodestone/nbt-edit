@@ -16,9 +16,18 @@
 	});
 
 	let selectedResource = resourceNames[0][1];
-	let data: Promise<Uint8Array> | undefined;
+    let files: FileList | undefined;
 
-	$: data = !selectedResource ? undefined : resources[selectedResource]().then((data) => fromHex(data.default));
+    let data: Promise<Uint8Array> | undefined;
+    $: if (!selectedResource) {
+        if (files) {
+            data = files[0].arrayBuffer().then((buffer) => new Uint8Array(buffer));
+        } else {
+            data = undefined;
+        }
+    } else {
+        data = resources[selectedResource]().then((data) => fromHex(data.default));
+    }
 </script>
 
 <select bind:value={selectedResource}>
@@ -27,6 +36,11 @@
 		<option value={path}>{name}</option>
 	{/each}
 </select>
+
+<span>OR</span>
+
+<!-- file upload -->
+<input type="file" accept=".nbt" bind:files={files} />
 
 {#await data}
 	<p>Loading...</p>
