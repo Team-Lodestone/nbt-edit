@@ -1,7 +1,8 @@
 <script lang="ts">
+    import 'compression-streams-polyfill'
     import { Viewer } from "$lib";
     import { fromHex } from "./hex";
-    
+
     const resources = import.meta.glob("../resources/*.nbt", { as: "raw-hex" })
 
     const resourceNames = Object.entries(resources).map(([path, _]) => {
