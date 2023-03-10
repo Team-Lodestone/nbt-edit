@@ -16,12 +16,13 @@
 	});
 
 	let selectedResource = resourceNames[0][1];
-	let data: Promise<Uint8Array>;
+	let data: Promise<Uint8Array> | undefined;
 
-	$: data = resources[selectedResource]().then((data) => fromHex(data.default));
+	$: data = !selectedResource ? undefined : resources[selectedResource]().then((data) => fromHex(data.default));
 </script>
 
 <select bind:value={selectedResource}>
+    <option value="">Select a resource</option>
 	{#each resourceNames as [name, path]}
 		<option value={path}>{name}</option>
 	{/each}

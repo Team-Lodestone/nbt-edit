@@ -4,27 +4,34 @@
 	import Value from './Value.svelte';
     import "./list.scss"
 
-	export let data: Uint8Array;
-	let nbt: unknown = null;
+	export let data: Uint8Array | undefined;
+	let nbt: Promise<unknown> | null = null;
 	let error: unknown = null;
 
-	onMount(async () => {
-		try {
-			nbt = await (await NBT.read(data)).data;
-			error = null;
-		} catch (e) {
-			error = e;
-			console.error(e);
-			nbt = null;
-		}
-	});
+    $: try {
+        if (data) {
+            nbt = NBT.read(data).then((nbt) => nbt.data);
+            error = null;
+        } else {
+            nbt = null;
+            error = "No data";
+        }
+    } catch (e) {
+        error = e;
+        console.error(e);
+        nbt = null;
+    }
 </script>
 
 <div>
 	{#if nbt}
-		<ul>
-			<Value value={nbt} />
-		</ul>
+        {#await nbt}
+            <p>Loading...</p>
+        {:then nbt}
+            <ul class="list">
+                <Value value={nbt} />
+            </ul>
+        {/await}
 	{:else if error}
 		<p>{error}</p>
 	{/if}
