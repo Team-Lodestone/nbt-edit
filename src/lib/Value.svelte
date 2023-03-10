@@ -23,7 +23,7 @@
     {#if value.length === 0}
         <span><i>Empty List</i></span>
     {:else}
-        <ul>
+        <ul class="list-l73tg8">
             {#each value as val, i}
                 <li>
                     [{i}]: <svelte:self value={val} />
@@ -32,7 +32,7 @@
         </ul>
     {/if}
 {:else if typeof value === 'object' && value !== null}
-	<ul>
+	<ul class="list-l73tg8">
 		{#each Object.entries(value) as [key, val]}
 			<li>
 				<span>{key}: </span>
