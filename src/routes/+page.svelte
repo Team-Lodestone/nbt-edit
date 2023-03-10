@@ -16,10 +16,6 @@
     let selectedResource = resourceNames[0][1];
     let data: Promise<Uint8Array>;
 
-    // import hello from "../resources/hello_world.nbt?raw"
-
-    // const data = new TextEncoder().encode(hello)
-
     const encoder = new TextEncoder();
     $: data = resources[selectedResource]().then((data) => encoder.encode(data));
 </script>
