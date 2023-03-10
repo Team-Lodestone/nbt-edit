@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@playwright/test': ^1.28.1
-  '@stardazed/streams-compression': ^1.0.0
+  '@stardazed/zlib': ^1.0.1
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/adapter-static': ^2.0.1
   '@sveltejs/kit': ^1.5.0
@@ -24,7 +24,7 @@ specifiers:
 
 devDependencies:
   '@playwright/test': 1.31.1
-  '@stardazed/streams-compression': 1.0.0
+  '@stardazed/zlib': 1.0.1
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.8.5
   '@sveltejs/adapter-static': 2.0.1_@sveltejs+kit@1.8.5
   '@sveltejs/kit': 1.8.5_svelte@3.55.1+vite@4.1.4
@@ -331,12 +331,6 @@ packages:
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
-    dev: true
-
-  /@stardazed/streams-compression/1.0.0:
-    resolution: {integrity: sha512-SQCiwxdIVJ5xxUBYptN+fc+tJpSDbxQuJ0+3u2SmHjIzr6JIRZ28AVFtFnGy6x6j3UBlaLx73w9rC6UAFxnd1g==}
-    dependencies:
-      '@stardazed/zlib': 1.0.1
     dev: true
 
   /@stardazed/zlib/1.0.1:

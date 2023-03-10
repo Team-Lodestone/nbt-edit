@@ -1,11 +1,15 @@
 <script lang="ts">
+    import { Short, Float, Int, Byte } from "nbtify";
+
+    function isNumber(value: unknown): value is number {
+        return value instanceof Short || value instanceof Float || value instanceof Int || value instanceof Byte;
+    }
+
     export let value: unknown
 </script>
-
-<!-- if object, show all keys and values (recursion) -->
-<!-- else, stringify the value. -->
-
-{#if typeof value === "object" && value !== null}
+{#if isNumber(value)}
+    {value}
+{:else if typeof value === "object" && value !== null}
     <ul>
         {#each Object.entries(value) as [key, val]}
             <li>

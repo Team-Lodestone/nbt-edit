@@ -1,8 +1,7 @@
 <script lang="ts">
     import { Viewer } from "$lib";
-    import "./polyfill.ts"
     import { fromHex } from "./hex";
-
+    
     const resources = import.meta.glob("../resources/*.nbt", { as: "raw-hex" })
 
     const resourceNames = Object.entries(resources).map(([path, _]) => {
@@ -18,8 +17,6 @@
     let selectedResource = resourceNames[0][1];
     let data: Promise<Uint8Array>;
     
-    const encoder = new TextEncoder();
-    $: resources[selectedResource]().then((data) => console.log(fromHex(data.default)));
     $: data = resources[selectedResource]().then((data) => fromHex(data.default));
 </script>
 
