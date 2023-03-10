@@ -1,3 +1,3 @@
-import Viewer from "./Viewer.svelte"
+import Viewer from './Viewer.svelte';
 
-export { Viewer }
+export { Viewer };
