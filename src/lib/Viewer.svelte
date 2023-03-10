@@ -1,14 +1,15 @@
 <script lang="ts">
     import * as NBT from 'nbtify'
 	import { onMount } from 'svelte';
+    import Value from './Value.svelte'
 
     export let data: Uint8Array
-    let nbt: NBT.NBTData | null = null
+    let nbt: unknown = null
     let error: unknown = null
 
     onMount(async () => {    
         try {
-            nbt = await NBT.read(data)
+            nbt = await (await NBT.read(data)).data
             error = null
         } catch (e) {
             error = e
@@ -19,7 +20,9 @@
 </script>
 
 {#if nbt}
-    <pre>{JSON.stringify(nbt, null, 2)}</pre>
+    <ul>
+        <Value value={nbt} />
+    </ul>
 {:else if error}
     <p>{error}</p>
 {/if}
