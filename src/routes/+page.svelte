@@ -27,6 +27,7 @@
         }
     } else {
         data = resources[selectedResource]().then((data) => fromHex(data.default));
+		files = undefined;
     }
 </script>
 
