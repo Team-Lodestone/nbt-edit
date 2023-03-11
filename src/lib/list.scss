@@ -6,46 +6,46 @@ $sel1: 'li:nth-child(odd)';
 $sel2: 'li:nth-child(even)';
 
 ul.list-l73tg8 {
-    > li:nth-child(odd) {
-        background: $c2;
-        ul li:nth-child(odd) {
-            background: $c1;
-            ul li:nth-child(odd) {
-                background: $c2;
-            }
-            ul li:nth-child(even) {
-                background: $c1;
-            }
-        }
-        ul li:nth-child(even) {
-            background: $c2;
-            ul li:nth-child(odd) {
-                background: $c1;
-            }
-            ul li:nth-child(even) {
-                background: $c2;
-            }
-        }
-    }
-    > li:nth-child(even) {
-        background: $c1;
-        ul li:nth-child(odd) {
-            background: $c2;
-            ul li:nth-child(odd) {
-                background: $c1;
-            }
-            ul li:nth-child(even) {
-                background: $c2;
-            }
-        }
-        ul li:nth-child(even) {
-            background: $c1;
-            ul li:nth-child(odd) {
-                background: $c2;
-            }
-            ul li:nth-child(even) {
-                background: $c1;
-            }
-        }
-    }
+	> li:nth-child(odd) {
+		background: $c2;
+		ul li:nth-child(odd) {
+			background: $c1;
+			ul li:nth-child(odd) {
+				background: $c2;
+			}
+			ul li:nth-child(even) {
+				background: $c1;
+			}
+		}
+		ul li:nth-child(even) {
+			background: $c2;
+			ul li:nth-child(odd) {
+				background: $c1;
+			}
+			ul li:nth-child(even) {
+				background: $c2;
+			}
+		}
+	}
+	> li:nth-child(even) {
+		background: $c1;
+		ul li:nth-child(odd) {
+			background: $c2;
+			ul li:nth-child(odd) {
+				background: $c1;
+			}
+			ul li:nth-child(even) {
+				background: $c2;
+			}
+		}
+		ul li:nth-child(even) {
+			background: $c1;
+			ul li:nth-child(odd) {
+				background: $c2;
+			}
+			ul li:nth-child(even) {
+				background: $c1;
+			}
+		}
+	}
 }
