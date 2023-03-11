@@ -20,8 +20,10 @@
 	});
 
 	$: {
+		const position = view?.state.selection.main.head;
 		const transaction = view?.state.update({
-			changes: { from: 0, to: view.state.doc.length, insert: value }
+			changes: { from: 0, to: view.state.doc.length, insert: value },
+			selection: { anchor: position, head: position }
 		});
 		view?.dispatch(transaction);
 	}
