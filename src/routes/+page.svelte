@@ -40,7 +40,6 @@
 
 <span>OR</span>
 
-<!-- file upload -->
 <input type="file" accept=".nbt" bind:files={files} />
 
 {#await data}
