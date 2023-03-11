@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as NBT from 'nbtify';
 	import Value from './Value.svelte';
+    import Editor from './Editor.svelte';
     import "./list.scss"
 
 	export let data: Uint8Array | undefined;
@@ -8,7 +9,6 @@
 	let error: unknown = null;
 
     let view: "structured" | "raw" = "structured";
-    let writer = new NBT.SNBTWriter()
 
     $: try {
         if (data) {
@@ -39,7 +39,7 @@
                     <Value value={nbt.data} />
                 </ul>
             {:else}
-                {writer.write(nbt.data)}
+                <Editor value={NBT.stringify(nbt.data, { space: 2 })}/>
             {/if}
         {/await}
     {:else if error}
