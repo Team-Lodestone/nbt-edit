@@ -6,7 +6,8 @@
 			value instanceof Short ||
 			value instanceof Float ||
 			value instanceof Int ||
-			value instanceof Byte
+			value instanceof Byte ||
+			typeof value === 'number'
 		);
 	}
 
@@ -15,39 +16,58 @@
 	}
 
 	export let value: unknown;
+	export let key: string | undefined;
+	export let root = false;
+
+	$: fmttedKey = key ? `${key}: ` : '';
 </script>
 
 {#if isNumber(value)}
-	{value}
+	<span>{fmttedKey}{value}</span>
 {:else if isArray(value)}
 	{#if value.length === 0}
-		<span><i>Empty List</i></span>
+		{fmttedKey}<span><i>Empty List</i></span>
 	{:else}
-		<ul class="list-l73tg8">
-			{#each value as val, i}
-				<li>
-					[{i}]: <svelte:self value={val} />
-				</li>
-			{/each}
-		</ul>
+		<details open>
+			<div class="body">
+				{#each value as val, i}
+					<p>
+						[{i}]: <svelte:self root={false} key={undefined} value={val} />
+					</p>
+				{/each}
+			</div>
+		</details>
 	{/if}
 {:else if typeof value === 'object' && value !== null}
-	<ul class="list-l73tg8">
+	{#if !root}
+		<details open>
+			{#if key !== undefined}
+				<summary>{key}</summary>
+			{/if}
+			<div class="body">
+				{#each Object.entries(value) as [key, val]}
+					<p>
+						<svelte:self root={false} {key} value={val} />
+					</p>
+				{/each}
+			</div>
+		</details>
+	{:else}
 		{#each Object.entries(value) as [key, val]}
-			<li>
-				<span>{key}: </span>
-				<svelte:self value={val} />
-			</li>
+			<p>
+				<svelte:self root={false} {key} value={val} />
+			</p>
 		{/each}
-	</ul>
+	{/if}
 {:else if typeof value === 'bigint'}
-	<span>{value}n</span>
+	<span>{fmttedKey}{value}n</span>
 {:else}
-	<span>{JSON.stringify(value)}</span>
+	<span>{fmttedKey}{JSON.stringify(value)}</span>
 {/if}
 
 <style>
-	ul {
-		list-style: none;
+	div.body {
+		padding-left: 1rem;
+		border-left: 1px solid #ccc;
 	}
 </style>

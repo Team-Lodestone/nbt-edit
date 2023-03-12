@@ -2,7 +2,6 @@
 	import * as NBT from 'nbtify';
 	import Value from './Value.svelte';
 	import Editor from './Editor.svelte';
-	import './list.scss';
 
 	export let data: Uint8Array | undefined;
 	let nbt: Promise<NBT.NBTData> | null = null;
@@ -37,9 +36,7 @@
 			<p>Loading...</p>
 		{:then nbt}
 			{#if view === 'structured'}
-				<ul class="list-l73tg8">
-					<Value value={nbt.data} />
-				</ul>
+				<Value root={true} key={undefined} value={nbt.data} />
 			{:else}
 				<Editor value={NBT.stringify(nbt.data, { space: 2 })} />
 			{/if}
