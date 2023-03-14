@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { Short, Float, Int, Byte } from 'nbtify';
 
-	function isNumber(value: unknown): value is number {
-		return (
-			value instanceof Short ||
-			value instanceof Float ||
-			value instanceof Int ||
-			value instanceof Byte ||
-			typeof value === 'number'
-		);
+	function fmtNumber(value: unknown): string | undefined {
+		if (value instanceof Short) return value.toString() + 's';
+		if (value instanceof Float) return value.toString() + 'f';
+		if (value instanceof Int) return value.toString();
+		if (value instanceof Byte) return value.toString() + 'b';
+		if (typeof value === 'number') return value.toString();
+		if (typeof value === 'bigint') return value.toString() + 'l';
+		return undefined;
 	}
 
 	function isArray(value: unknown): value is unknown[] {
@@ -22,8 +22,8 @@
 	$: fmttedKey = key ? `${key}: ` : '';
 </script>
 
-{#if isNumber(value)}
-	<span>{fmttedKey}{value}</span>
+{#if fmtNumber(value) !== undefined}
+	<span>{fmttedKey}{fmtNumber(value)}</span>
 {:else if isArray(value)}
 	{#if value.length === 0}
 		{fmttedKey}<span><i>Empty List</i></span>
@@ -60,8 +60,6 @@
 			</p>
 		{/each}
 	{/if}
-{:else if typeof value === 'bigint'}
-	<span>{fmttedKey}{value}n</span>
 {:else}
 	<span>{fmttedKey}{JSON.stringify(value)}</span>
 {/if}
