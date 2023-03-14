@@ -33,7 +33,7 @@
 			<div class="body">
 				{#each value as val, i}
 					<p>
-						[{i}]: <svelte:self root={false} key={undefined} value={val} />
+						<svelte:self root={false} key={`[${i}]`} value={val} />
 					</p>
 				{/each}
 			</div>
@@ -64,9 +64,13 @@
 	<span>{fmttedKey}{JSON.stringify(value)}</span>
 {/if}
 
-<style>
+<style lang="scss">
 	div.body {
 		padding-left: 1rem;
 		border-left: 1px solid #ccc;
+	}
+
+	details summary {
+		cursor: pointer;
 	}
 </style>
