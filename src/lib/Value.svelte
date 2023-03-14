@@ -18,18 +18,16 @@
 	export let value: unknown;
 	export let key: string | undefined;
 	export let root = false;
-
-	$: fmttedKey = key ? `${key}: ` : '';
 </script>
 
 {#if fmtNumber(value) !== undefined}
-	<span>{fmttedKey}{fmtNumber(value)}</span>
+	<span>{key}: {fmtNumber(value)}</span>
 {:else if isArray(value)}
 	{#if value.length === 0}
-		{fmttedKey}<span><i>Empty List</i></span>
+		<span>{key}: <i>Empty List</i></span>
 	{:else}
 		<details open>
-			<summary>{fmttedKey}</summary>
+			<summary>{key}</summary>
 			<div class="body">
 				{#each value as val, i}
 					<p>
@@ -61,7 +59,7 @@
 		{/each}
 	{/if}
 {:else}
-	<span>{fmttedKey}{JSON.stringify(value)}</span>
+	<span>{key}: {JSON.stringify(value)}</span>
 {/if}
 
 <style lang="scss">
