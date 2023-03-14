@@ -29,6 +29,7 @@
 		{fmttedKey}<span><i>Empty List</i></span>
 	{:else}
 		<details open>
+			<summary>{fmttedKey}</summary>
 			<div class="body">
 				{#each value as val, i}
 					<p>
