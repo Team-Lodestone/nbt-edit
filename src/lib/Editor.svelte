@@ -29,4 +29,10 @@
 	}
 </script>
 
-<div bind:this={container} />
+<div bind:this={container} class="container" />
+
+<style lang="scss">
+	.container {
+		width: 100%;
+	}
+</style>

@@ -9,6 +9,11 @@
 
 	let view: 'structured' | 'raw' = 'structured';
 
+	let clazz: string | undefined = undefined;
+	export let style: string | undefined = undefined;
+
+	export { clazz as class };
+
 	$: try {
 		if (data) {
 			nbt = NBT.read(data);
@@ -24,7 +29,7 @@
 	}
 </script>
 
-<div>
+<div class="container {clazz}" style={style}>
 	<div class="tabs">
 		<button class={view === 'structured' ? 'active' : ''} on:click={() => (view = 'structured')}
 			>Structured View</button
@@ -47,6 +52,10 @@
 </div>
 
 <style lang="scss">
+	.container {
+		width: 100%;
+	}
+
 	.tabs {
 		background: #f1f1f1;
 		border: 1px solid #ccc;

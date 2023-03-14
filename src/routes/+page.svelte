@@ -31,21 +31,65 @@
 	}
 </script>
 
-<select bind:value={selectedResource}>
-	<option value="">Select a resource</option>
-	{#each resourceNames as [name, path]}
-		<option value={path}>{name}</option>
-	{/each}
-</select>
+<div id="container">
+	<main>
+		<h1>NBT-Edit</h1>
 
-<span>OR</span>
+		<p>View and edit NBT data.</p>
 
-<input type="file" accept=".nbt" bind:files />
+		<p>View the demo here, or open the dedicated <a href="/nbt-edit/app">NBT-Edit app</a>.</p>
 
-{#await data}
-	<p>Loading...</p>
-{:then data}
-	<Viewer {data} />
-{:catch error}
-	<p>{error}</p>
-{/await}
+		<div class="editor">
+			<div class="select">
+				<select bind:value={selectedResource}>
+					<option value="">Select a resource</option>
+					{#each resourceNames as [name, path]}
+						<option value={path}>{name}</option>
+					{/each}
+				</select>
+	
+				<span>OR</span>
+	
+				<input type="file" accept=".nbt" bind:files />
+			</div>
+
+
+			{#await data}
+				<p>Loading...</p>
+			{:then data}
+				<Viewer {data} />
+			{:catch error}
+				<p>{error}</p>
+			{/await}
+		</div>
+	</main>
+</div>
+
+<style>
+	.select {
+		text-align: center;
+		width: 100%;
+		margin-bottom: 0.5rem;
+	}
+
+	.editor {
+		border: 1px solid #ccc;
+		padding: 0.5rem;
+		margin: 0.5rem;
+		width: 100%;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 800px;
+	}
+
+	#container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+</style>
