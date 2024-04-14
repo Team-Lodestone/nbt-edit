@@ -1,4 +1,4 @@
-# [nbt-edit](https://minecraft-manipulator.github.io/nbt-edit)
+# [nbt-edit](https://team-lodestone.github.io/nbt-edit)
 
 nbt editor &amp;&amp; viewer component for the web.
 
